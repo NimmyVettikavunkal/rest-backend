@@ -8,3 +8,4 @@ public interface ClientRepository extends JpaRepository<Client,Long> {
 
     }
 
+// ClientRepository is using the methods in JpaRepository
