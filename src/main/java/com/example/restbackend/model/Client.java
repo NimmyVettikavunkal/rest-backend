@@ -19,4 +19,10 @@ public class Client {
     public Client() {
     }
 
+    public Client(Long clientId, String name, String dob) {
+        this.clientId = clientId;
+        this.name = name;
+        this.dob = dob;
+    }
+
 }
