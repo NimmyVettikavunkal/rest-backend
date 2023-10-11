@@ -1,7 +1,14 @@
 package com.example.restbackend.model;
 
-public class Client {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
+public class Client {
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long clientId;
 
     private String name;
@@ -19,8 +26,7 @@ public class Client {
     public Client() {
     }
 
-    public Client(Long clientId, String name, String dob) {
-        this.clientId = clientId;
+    public Client(String name, String dob) {
         this.name = name;
         this.dob = dob;
     }
