@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create New Client</title>
+</head>
+<body>
+<h1>Create New Client</h1>
+<form id="clientForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="dob">Date of Birth:</label>
+    <input type="text" id="dob" name="dob" required><br>
+
+    <label for="doctorAddress">Doctor's Address:</label>
+    <input type="text" id="doctorAddress" name="doctorAddress"><br>
+
+    <label for="contactNo1">Contact Number 1:</label>
+    <input type="text" id="contactNo1" name="contactNo1" required><br>
+
+    <label for="contactNo2">Contact Number 2:</label>
+    <input type="text" id="contactNo2" name="contactNo2"><br>
+
+    <label for="ppsn">PPS Number:</label>
+    <input type="text" id="ppsn" name="ppsn"><br>
+
+    <label for="gender">Gender:</label>
+    <input type="text" id="gender" name="gender"><br>
+
+    <label for="clientAddress">Client Address:</label>
+    <input type="text" id="clientAddress" name="clientAddress"><br>
+
+    <label for="clientContactNo">Client Contact Number:</label>
+    <input type="text" id="clientContactNo" name="clientContactNo"><br>
+
+    <label for="doctorName">Doctor's Name:</label>
+    <input type="text" id="doctorName" name="doctorName"><br>
+
+    <input type="submit" value="Create Client">
+</form>
+
+<script>
+    document.getElementById('clientForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // Create a JavaScript object to hold the form data
+        const clientData = {
+            name: document.getElementById('name').value,
+            dob: document.getElementById('dob').value,
+            doctorAddress: document.getElementById('doctorAddress').value,
+            contactNo1: document.getElementById('contactNo1').value,
+            contactNo2: document.getElementById('contactNo2').value,
+            ppsn: document.getElementById('ppsn').value,
+            gender: document.getElementById('gender').value,
+            clientAddress: document.getElementById('clientAddress').value,
+            clientContactNo: document.getElementById('clientContactNo').value,
+            doctorName: document.getElementById('doctorName').value
+        };
+
+        // Convert the data to a JSON string
+        const jsonData = JSON.stringify(clientData);
+
+        fetch('/client', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: jsonData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response data as needed
+            console.log(data);
+        })
+        .catch(error => {
+            // Handle any errors
+            console.error(error);
+        });
+    });
+</script>
+
+</body>
+</html>

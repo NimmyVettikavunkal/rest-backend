@@ -13,15 +13,16 @@ public class Client {
 
     private String name;
     private String dob;
+    String doctorAddress;
+
+    private int contactNo1;
+    private int contactNo2;
     private String ppsn;
     private String gender;
     private String clientAddress;
     private int clientContactNo;
     private String doctorName;
-    private String doctorAddress;
 
-    private int contactNo1;
-    private int contactNo2;
 
     public Client() {
     }

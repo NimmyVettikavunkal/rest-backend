@@ -4,6 +4,8 @@ import com.example.restbackend.model.Client;
 import com.example.restbackend.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,5 +20,13 @@ public class ClientController {
 
         return clientRepository.findAll();
     }
+    @PostMapping("/client")
+    public Client createClient(@RequestBody Client client) {
+        // Save the new client in the database using clientRepository
+        // You might want to validate and perform error handling here
+
+        return clientRepository.save(client);
+    }
+
 
 }
