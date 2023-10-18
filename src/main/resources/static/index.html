@@ -28,7 +28,7 @@
     <input type="text" id="doctorName"><br>
 
     <label for="doctorAddress">Doctor Address:</label>
-    <input type="text" id="doctorAddress"><br>
+    <input type ="text" id="doctorAddress"><br>
 
     <label for="contactNo1">Emergency Contact Number 1:</label>
     <input type="text" id="contactNo1"><br>
@@ -56,21 +56,26 @@
             contactNo2: document.getElementById("contactNo2").value
         };
 
-        fetch("/client", {
+        fetch("/clients", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(clientData)
         })
-        .then(response => response.json())
-        .then(data => {
-            // Handle the response data as needed
-            console.log(data);
+        .then(response => {
+            if (response.status === 201) {
+                // Client created successfully
+                alert("Client created successfully");
+                // You can redirect to another page or perform other actions here
+            } else {
+                // Handle other response statuses (e.g., validation errors)
+                alert("Client creation failed");
+            }
         })
         .catch(error => {
-            // Handle any errors
-            console.error(error);
+            // Handle any network errors
+            alert("An error occurred");
         });
     });
 </script>
