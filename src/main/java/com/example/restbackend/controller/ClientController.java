@@ -16,20 +16,19 @@ public class ClientController {
 
     @Autowired
     ClientRepository clientRepository;
+
     @GetMapping("/client")
     public List<Client> getAllClients() {
 
         return clientRepository.findAll();
     }
 
-
-
-        @PostMapping("/client")
-
-        public Client createClient(@RequestBody Client client) {
-            return clientRepository.save(client);
-        }
+    @PostMapping("/client")
+    public Client createClient(@RequestBody Client client) {
+        return clientRepository.save(client);
     }
+
+}
 
 
 

@@ -56,7 +56,7 @@
             contactNo2: document.getElementById("contactNo2").value
         };
 
-        fetch("/clients", {
+        fetch("/client", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -64,7 +64,7 @@
             body: JSON.stringify(clientData)
         })
         .then(response => {
-            if (response.status === 201) {
+            if (response.status === 200) {
                 // Client created successfully
                 alert("Client created successfully");
                 // You can redirect to another page or perform other actions here
