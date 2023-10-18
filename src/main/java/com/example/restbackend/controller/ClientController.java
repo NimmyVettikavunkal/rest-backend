@@ -2,6 +2,7 @@ package com.example.restbackend.controller;
 
 import com.example.restbackend.model.Client;
 import com.example.restbackend.repository.ClientRepository;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,11 +21,18 @@ public class ClientController {
 
         return clientRepository.findAll();
     }
-    @PostMapping("/client")
-    public Client createClient(@RequestBody Client newClient) {
-        // Assuming you have a clientRepository for data access
-        return clientRepository.save(newClient);
+
+
+
+        @PostMapping("/client")
+
+        public Client createClient(@RequestBody Client client) {
+            return clientRepository.save(client);
+        }
     }
 
 
-}
+
+
+
+
