@@ -19,7 +19,11 @@
         <button type="submit">Log In</button>
     </div>
 </form>
+
 <p id="errorText" style="color: red; display: none;">Authentication failed. Please check your username and password.</p>
+
+<!-- Add a registration link here -->
+<p>Don't have an account? <a href="registrationform.html">Register here</a></p>
 
 <script>
         function validateForm() {
@@ -33,15 +37,14 @@
 
             document.getElementById("errorText").style.display = "none";
 
-            // Make an AJAX request to the Spring Boot endpoint
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "/login", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-                        // Authentication succeeded, redirect or perform other actions
-                        alert("Login successful!");
+                        // Authentication succeeded, redirect to the welcome.html page
+                        window.location.href = "/welcome.html";
                     } else if (xhr.status === 401) {
                         // Authentication failed
                         document.getElementById("errorText").style.display = "block";
