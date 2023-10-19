@@ -10,18 +10,21 @@ public class Client {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long clientId;
-
     private String name;
     private String dob;
-    String doctorAddress;
-
-    private int contactNo1;
-    private int contactNo2;
     private String ppsn;
     private String gender;
     private String clientAddress;
     private int clientContactNo;
+
+
+    private int emgContactNo1;
+    private int emgContactNo2;
     private String doctorName;
+    private String doctorAddress;
+
+    private String username;
+    private String password;
 
 
     public Client() {
@@ -104,19 +107,35 @@ public class Client {
         this.doctorAddress = doctorAddress;
     }
 
-    public int getContactNo1() {
-        return contactNo1;
+    public int getEmgContactNo1() {
+        return emgContactNo1;
     }
 
-    public void setContactNo1(int contactNo1) {
-        this.contactNo1 = contactNo1;
+    public void setEmgContactNo1(int emgContactNo1) {
+        this.emgContactNo1 = emgContactNo1;
     }
 
-    public int getContactNo2() {
-        return contactNo2;
+    public int getEmgContactNo2() {
+        return emgContactNo2;
     }
 
-    public void setContactNo2(int contactNo2) {
-        this.contactNo2 = contactNo2;
+    public void setEmgContactNo2(int emgContactNo2) {
+        this.emgContactNo2 = emgContactNo2;
+    }
+
+    public String getusername() {
+        return username;
+    }
+
+    public void setusername(String username) {
+        this.username = username;
+    }
+
+    public String getpassword() {
+        return password;
+    }
+
+    public void setpassword(String password) {
+        this.password = password;
     }
 }

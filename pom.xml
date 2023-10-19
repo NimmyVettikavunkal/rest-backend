@@ -41,7 +41,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>com.free-now.sauron.plugins</groupId>
+            <artifactId>bcrypt-passwordencoder-checker</artifactId>
+            <version>0.0.4</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>

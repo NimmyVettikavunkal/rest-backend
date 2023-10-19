@@ -1,134 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>New Registration</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1 {
-            text-align: center;
-            background-color: #3498db;
-            color: #fff;
-            padding: 20px;
-            margin: 0;
-        }
-
-        form {
-            max-width: 400px;
-            margin: 20px auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-
-        label {
-            display: block;
-            margin: 10px 0;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-
-        input[type="submit"] {
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #1e87d8;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>Login</title>
 </head>
 <body>
-<h1>New Registration Form</h1>
-<form id="clientForm">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required><br>
-
-    <label for="dob">Date of Birth:</label>
-    <input type="text" id="dob" name="dob" required><br>
-
-    <label for="doctorAddress">Doctor's Address:</label>
-    <input type="text" id="doctorAddress" name="doctorAddress"><br>
-
-    <label for="contactNo1">Contact Number 1:</label>
-    <input type="text" id="contactNo1" name="contactNo1" required><br>
-
-    <label for="contactNo2">Contact Number 2:</label>
-    <input type="text" id="contactNo2" name="contactNo2"><br>
-
-    <label for="ppsn">PPS Number:</label>
-    <input type="text" id="ppsn" name="ppsn"><br>
-
-    <label for="gender">Gender:</label>
-    <input type="text" id="gender" name="gender"><br>
-
-    <label for="clientAddress">Client Address:</label>
-    <input type="text" id="clientAddress" name="clientAddress"><br>
-
-    <label for="clientContactNo">Client Contact Number:</label>
-    <input type="text" id="clientContactNo" name="clientContactNo"><br>
-
-    <label for="doctorName">Doctor's Name:</label>
-    <input type="text" id="doctorName" name="doctorName"><br>
-
-    <input type="submit" value="Register">
+<h1>Login</h1>
+<form id="loginForm" onsubmit="return validateForm();">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <div>
+        <button type="submit">Log In</button>
+    </div>
 </form>
+<p id="errorText" style="color: red; display: none;">Authentication failed. Please check your username and password.</p>
 
 <script>
-    document.getElementById('clientForm').addEventListener('submit', function (event) {
-        event.preventDefault();
+        function validateForm() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
 
-        // Create a JavaScript object to hold the form data
-        const clientData = {
-            name: document.getElementById('name').value,
-            dob: document.getElementById('dob').value,
-            doctorAddress: document.getElementById('doctorAddress').value,
-            contactNo1: document.getElementById('contactNo1').value,
-            contactNo2: document.getElementById('contactNo2').value,
-            ppsn: document.getElementById('ppsn').value,
-            gender: document.getElementById('gender').value,
-            clientAddress: document.getElementById('clientAddress').value,
-            clientContactNo: document.getElementById('clientContactNo').value,
-            doctorName: document.getElementById('doctorName').value
-        };
+            if (username === "" || password === "") {
+                document.getElementById("errorText").style.display = "block";
+                return false;
+            }
 
-        // Convert the data to a JSON string
-        const jsonData = JSON.stringify(clientData);
+            document.getElementById("errorText").style.display = "none";
 
-        fetch('/client', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: jsonData
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Handle the response data as needed
-            console.log(data);
-        })
-        .catch(error => {
-            // Handle any errors
-            console.error(error);
-        });
-    });
-</script>
+            // Make an AJAX request to the Spring Boot endpoint
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/login", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        // Authentication succeeded, redirect or perform other actions
+                        alert("Login successful!");
+                    } else if (xhr.status === 401) {
+                        // Authentication failed
+                        document.getElementById("errorText").style.display = "block";
+                    }
+                }
+            };
+            var data = "username=" + encodeURIComponent(username) + "&password=" + encodeURIComponent(password);
+            xhr.send(data);
 
+            return false; // Prevent form submission
+        }
+    </script>
 </body>
 </html>
