@@ -26,8 +26,8 @@ public class ClientController {
 
         @PostMapping("/client")
 
-        public Client createClient(@RequestBody Client client) {
-            return clientRepository.save(client);
+        public Client createClient(@RequestBody Client newClient) {
+            return clientRepository.save(newClient);
         }
     }
 

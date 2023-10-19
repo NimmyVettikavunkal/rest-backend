@@ -2,8 +2,88 @@
 <html>
 <head>
     <title>Create New Client</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+           // background-color: #007BFF;
+            background-image: url('image_3.jpg'); /* Add the URL of your background image here */
+            background-size: cover;
+            color: #fff;
+            padding: 10px;
+            //text-align: center;
+        }
+        nav {
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
+<header>
+    <h1>Well-being Companion</h1>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Register</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
 <h1>Create New Client</h1>
 <form id="clientForm">
     <label for="name">Name:</label>
@@ -38,6 +118,11 @@
 
     <input type="submit" value="Create Client">
 </form>
+<footer>
+    &copy; 2023 Healthcare App
+</footer>
+
+<script>
 
 <script>
     document.getElementById("clientForm").addEventListener("submit", function(event) {
@@ -64,7 +149,7 @@
             body: JSON.stringify(clientData)
         })
         .then(response => {
-            if (response.status === 201) {
+            if (response.status === 200) {
                 // Client created successfully
                 alert("Client created successfully");
                 // You can redirect to another page or perform other actions here
