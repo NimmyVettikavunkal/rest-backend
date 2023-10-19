@@ -16,6 +16,7 @@ public class ClientController {
 
     @Autowired
     ClientRepository clientRepository;
+
     @GetMapping("/client")
     public List<Client> getAllClients() {
 
@@ -30,6 +31,9 @@ public class ClientController {
             return clientRepository.save(newClient);
         }
     }
+
+
+
 
 
 
