@@ -2,64 +2,105 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to Elderly Healthcare</title>
+    <title>Welcome</title>
+    <style>
+        /* Styling for the message popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #333;
+            text-align: center;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-<header>
-    <h1>Welcome to Elderly Healthcare</h1>
-</header>
+<h1>Welcome, <span id="usernameDisplay"></span>!</h1>
+<button id="getInfoButton">Get User Info</button>
 
-<nav>
-    <ul>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#services">Our Services</a></li>
-        <li><a href="#resources">Resources</a></li>
-        <li><a href="#contact">Contact Us</a></li>
-    </ul>
-</nav>
+<!-- Message Popup Container -->
+<div id="messagePopup" class="popup">
+    <div class="popup-content">
+        <span id="closePopup" class="close" onclick="closePopup()">&times;</span>
+        <h2>Message Popup</h2>
+        <p id="messageText"></p>
+    </div>
+</div>
 
-<section id="about">
-    <h2>About Us</h2>
-    <p>
-        Elderly Healthcare is dedicated to providing quality healthcare services to seniors.
-        We have a team of experienced professionals who are committed to the well-being of
-        the elderly.
-    </p>
-</section>
+<script>
+        // Function to extract the username from the URL parameters
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
 
-<section id="services">
-    <h2>Our Services</h2>
-    <ul>
-        <li>Regular Checkups</li>
-        <li>Medication Management</li>
-        <li>Home Health Care</li>
-        <li>Physical Therapy</li>
-        <li>Mental Health Support</li>
-    </ul>
-</section>
+        var username = getParameterByName("username");
+        var usernameDisplay = document.getElementById("usernameDisplay");
+        usernameDisplay.textContent = username;
 
-<section id="resources">
-    <h2>Resources</h2>
-    <p>
-        We offer a variety of resources for elderly individuals and their families,
-        including educational materials and support groups.
-    </p>
-</section>
+        // Add a click event listener to the button
+        var getInfoButton = document.getElementById("getInfoButton");
+        getInfoButton.addEventListener("click", function() {
+            // Capture the username from the URL and use it in the GET request
+            var url = "/alert?username=" + encodeURIComponent(username);
 
-<section id="contact">
-    <h2>Contact Us</h2>
-    <p>
-        If you have any questions or would like to schedule an appointment,
-        please feel free to contact us.
-    </p>
-    <address>
-        Email: <a href="mailto:info@elderlyhealthcare.com">info@elderlyhealthcare.com</a><br>
-        Phone: <a href="tel:+1234567890">(123) 456-7890</a>
-    </address>
-</section>
+            // Perform the GET request
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Process the response data as needed
 
-<footer>
-    <p>&copy; 2023 Elderly Healthcare</p>
-</footer>
+                    for (let i = 0; i <=data.length; i++) {
+                             alert(data[i]);
+                    }
+                 //   alert(data);
+                 //   alert("User Info: " + JSON.stringify(data));
+                  //  var message = "User Info: " + JSON.stringify(data);
+                  //  showMessagePopup(message);
+                })
+                .catch(error => {
+                    alert("Error: " + error);
+                });
+        });
+
+        function showMessagePopup(message) {
+            var messagePopup = document.getElementById("messagePopup");
+            var messageText = document.getElementById("messageText");
+            messageText.textContent = message;
+            messagePopup.style.display = "block";
+        }
+
+        // Function to close the message popup
+        function closePopup() {
+            var messagePopup = document.getElementById("messagePopup");
+            messagePopup.style.display = "none";
+        }
+    </script>
 </body>
 </html>

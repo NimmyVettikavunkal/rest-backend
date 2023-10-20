@@ -44,7 +44,7 @@
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
                         // Authentication succeeded, redirect to the welcome.html page
-                        window.location.href = "/welcome.html";
+                        window.location.href = "/welcome.html?username=" + encodeURIComponent(username);
                     } else if (xhr.status === 401) {
                         // Authentication failed
                         document.getElementById("errorText").style.display = "block";
