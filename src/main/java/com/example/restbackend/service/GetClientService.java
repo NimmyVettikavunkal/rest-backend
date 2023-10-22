@@ -18,10 +18,10 @@ public class GetClientService {
         return clientRepository.findByUsername(username);
     }
 
-    public List<Integer> getAllContactNo(String username){
+    public List<Long> getAllContactNo(String username){
         Client user = getUserByUsername(username);
 
-        List<Integer> contactNo = List.of(
+        List<Long> contactNo = List.of(
                 user.getEmgContactNo1(),
                 user.getEmgContactNo2());
         return contactNo;

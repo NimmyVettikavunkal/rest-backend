@@ -15,11 +15,13 @@ public class Client {
     private String ppsn;
     private String gender;
     private String clientAddress;
-    private int clientContactNo;
+    private Long clientContactNo;
 
 
-    private int emgContactNo1;
-    private int emgContactNo2;
+    private Long emgContactNo1;
+    private Long emgContactNo2;
+
+    private Long ambulanceNo;
     private String doctorName;
     private String doctorAddress;
 
@@ -83,11 +85,11 @@ public class Client {
         this.clientAddress = clientAddress;
     }
 
-    public int getClientContactNo() {
+    public Long getClientContactNo() {
         return clientContactNo;
     }
 
-    public void setClientContactNo(int clientContactNo) {
+    public void setClientContactNo(Long clientContactNo) {
         this.clientContactNo = clientContactNo;
     }
 
@@ -107,19 +109,19 @@ public class Client {
         this.doctorAddress = doctorAddress;
     }
 
-    public int getEmgContactNo1() {
+    public Long getEmgContactNo1() {
         return emgContactNo1;
     }
 
-    public void setEmgContactNo1(int emgContactNo1) {
+    public void setEmgContactNo1(Long emgContactNo1) {
         this.emgContactNo1 = emgContactNo1;
     }
 
-    public int getEmgContactNo2() {
+    public Long getEmgContactNo2() {
         return emgContactNo2;
     }
 
-    public void setEmgContactNo2(int emgContactNo2) {
+    public void setEmgContactNo2(Long emgContactNo2) {
         this.emgContactNo2 = emgContactNo2;
     }
 

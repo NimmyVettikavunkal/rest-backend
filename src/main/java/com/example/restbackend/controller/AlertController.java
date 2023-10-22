@@ -20,11 +20,11 @@ public class AlertController {
     GetClientService getClientService;
 
     @GetMapping("/alert")
-    public List<Integer> getAllContact(@RequestParam(defaultValue = "admin") String username){
+    public List<Long> getAllContact(@RequestParam(defaultValue = "admin") String username){
 
         Client user = getClientService.getUserByUsername(username);
-        List<Integer> allContactNo = getClientService.getAllContactNo(username);
-        for (int no:allContactNo) {
+        List<Long> allContactNo = getClientService.getAllContactNo(username);
+        for (Long no:allContactNo) {
             System.out.println(no);
         }
         return allContactNo;
