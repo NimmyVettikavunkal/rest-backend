@@ -2,7 +2,7 @@ package com.example.restbackend.controller;
 
 import com.example.restbackend.model.Client;
 import com.example.restbackend.repository.ClientRepository;
-import com.example.restbackend.service.ClientService;
+import com.example.restbackend.service.GetClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,13 +17,13 @@ public class AlertController {
     ClientRepository clientRepository;
 
     @Autowired
-    ClientService clientService;
+    GetClientService getClientService;
 
     @GetMapping("/alert")
     public List<Integer> getAllContact(@RequestParam(defaultValue = "admin") String username){
 
-        Client user = clientService.getUserByUsername(username);
-        List<Integer> allContactNo = clientService.getAllContactNo(username);
+        Client user = getClientService.getUserByUsername(username);
+        List<Integer> allContactNo = getClientService.getAllContactNo(username);
         for (int no:allContactNo) {
             System.out.println(no);
         }

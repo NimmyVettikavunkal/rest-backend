@@ -1,7 +1,7 @@
 package com.example.restbackend.controller;
 import com.example.restbackend.model.Client;
 import com.example.restbackend.repository.ClientRepository;
-import com.example.restbackend.service.ClientService;
+import com.example.restbackend.service.LoginClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ public class LoginController {
     ClientRepository clientRepository;
 
     @Autowired
-    ClientService clientService;
+    LoginClientService loginClientService;
 
     @GetMapping("/login")
     public List<Client> getAllClients() {
@@ -48,13 +48,11 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<Client> login(@RequestParam String username, @RequestParam String password) {
-        Client user = clientService.getUserByUsername(username);
+        Client user = loginClientService.getUserByUsername(username);
 
-        if (clientService.authenticateUser(username, password)) {
+        if (loginClientService.authenticateUser(username, password)) {
             // Handle authentication failure, return an error response
-            System.out.println(ResponseEntity.ok(user.getDob()));
             return ResponseEntity.ok(user);
-
         }
 
         // Authentication succeeded, return the user object

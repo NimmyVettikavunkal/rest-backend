@@ -39,10 +39,15 @@
 <h1>Welcome, <span id="usernameDisplay"></span>!</h1>
 <button id="getInfoButton">Get User Info</button>
 
-<h1>Message Sent to </h1>
-<ul id="message-list">
+<!-- Message Popup Container -->
+<div id="messagePopup" class="popup">
+    <div class="popup-content">
+        <span id="closePopup" class="close" onclick="closePopup()">&times;</span>
+        <h2>Message Popup</h2>
+        <p id="messageText"></p>
+    </div>
+</div>
 
-</ul>
 <script>
         // Function to extract the username from the URL parameters
         function getParameterByName(name, url) {
@@ -72,25 +77,30 @@
                     // Process the response data as needed
 
                     for (let i = 0; i <=data.length; i++) {
-                             addMessage(data[i]);
+                             alert(data[i]);
                     }
+                 //   alert(data);
+                 //   alert("User Info: " + JSON.stringify(data));
+                  //  var message = "User Info: " + JSON.stringify(data);
+                  //  showMessagePopup(message);
                 })
                 .catch(error => {
                     alert("Error: " + error);
                 });
         });
 
-        function addMessage(newMessage) {
-            const messageList = document.getElementById("message-list");
-            //const newMessage = prompt("Enter a message:");
-
-            if (newMessage) {
-                const listItem = document.createElement("li");
-                listItem.textContent = "Message sent to Family Contact " + newMessage;
-                messageList.appendChild(listItem);
-            }
+        function showMessagePopup(message) {
+            var messagePopup = document.getElementById("messagePopup");
+            var messageText = document.getElementById("messageText");
+            messageText.textContent = message;
+            messagePopup.style.display = "block";
         }
 
+        // Function to close the message popup
+        function closePopup() {
+            var messagePopup = document.getElementById("messagePopup");
+            messagePopup.style.display = "none";
+        }
     </script>
 </body>
 </html>

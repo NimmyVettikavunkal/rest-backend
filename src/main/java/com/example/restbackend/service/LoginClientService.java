@@ -5,10 +5,8 @@ import com.example.restbackend.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class ClientService {
+public class LoginClientService {
     @Autowired
     private ClientRepository clientRepository;
 
@@ -27,15 +25,6 @@ public class ClientService {
 
         // Authentication failed
         return false;
-    }
-
-    public List<Integer> getAllContactNo(String username){
-        Client user = getUserByUsername(username);
-
-        List<Integer> contactNo = List.of(
-                user.getEmgContactNo1(),
-                user.getEmgContactNo2());
-        return contactNo;
     }
 
 }
