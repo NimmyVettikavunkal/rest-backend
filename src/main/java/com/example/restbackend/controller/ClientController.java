@@ -3,7 +3,10 @@ package com.example.restbackend.controller;
 import com.example.restbackend.model.Client;
 import com.example.restbackend.repository.ClientRepository;
 import com.example.restbackend.service.RegisterService;
+import jakarta.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,9 +41,13 @@ public class ClientController {
     }*/
 
     @PostMapping("/client")
-    public Client createClient(@RequestBody Client client) {
+    public ResponseEntity<Client> createClient(@RequestBody Client client) {
         System.out.println("inside client controller");
-        return clientService.createClient(client);
+        Client user = clientService.createClient(client);
+        if(user!= null){
+            return ResponseEntity.ok(user);
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
 }
