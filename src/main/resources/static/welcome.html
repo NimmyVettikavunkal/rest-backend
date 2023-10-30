@@ -33,9 +33,68 @@
             font-size: 20px;
             cursor: pointer;
         }
+        .alert {
+        background-color: #ff0000; /* Red background color for the alert message */
+        color: #fff; /* White text color for the alert message */
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+    }
+    body {
+        background-image: url('healthcare1.jpg');
+        background-size: cover; /* Scale the image to cover the entire background */
+        background-attachment: fixed; /* Fixed background position while scrolling */
+    }
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        ul.menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: #333;
+            text-align: center;
+        }
+
+        ul.menu li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        ul.menu li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        ul.menu li a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
+<header>
+    <h1>Well-being Companion</h1>
+</header>
+<!-- Add the navigation menu -->
+<ul class="menu">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Contact</a></li>
+</ul>
 <h1>Welcome, <span id="usernameDisplay"></span>!</h1>
 <button id="getInfoButton">Alert!!</button>
 
@@ -43,6 +102,9 @@
 <ul id="message-list">
 
 </ul>
+<footer>
+    <p>&copy; 2023 Well-being Companion</p>
+</footer>
 <script>
         // Function to extract the username from the URL parameters
         function getParameterByName(name, url) {
