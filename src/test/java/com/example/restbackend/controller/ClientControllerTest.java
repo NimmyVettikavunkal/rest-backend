@@ -19,6 +19,7 @@ class ClientControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
     @Test
     void getAllClients() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/client"))
