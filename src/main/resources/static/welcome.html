@@ -40,6 +40,18 @@
         font-size: 16px;
         border-radius: 5px;
     }
+    .button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
     body {
         background-image: url('healthcare1.jpg');
         background-size: cover; /* Scale the image to cover the entire background */
@@ -96,12 +108,13 @@
     <li><a href="#">Contact</a></li>
 </ul>
 <h1>Welcome, <span id="usernameDisplay"></span>!</h1>
-<button id="getInfoButton">Alert!!</button>
+<button id="getInfoButton" class="button">Alert!!</button>
 
+<div class="alert">
 <h1>Message Sent to </h1>
 <ul id="message-list">
-
 </ul>
+</div>
 <footer>
     <p>&copy; 2023 Well-being Companion</p>
 </footer>
@@ -133,7 +146,7 @@
                 .then(data => {
                     // Process the response data as needed
 
-                    for (let i = 0; i <=data.length; i++) {
+                    for (let i = 0; i < data.length; i++) { //made changes here
                              addMessage(data[i]);
                     }
                 })
