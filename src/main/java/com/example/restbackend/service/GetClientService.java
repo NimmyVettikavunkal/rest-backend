@@ -23,7 +23,8 @@ public class GetClientService {
 
         List<Long> contactNo = List.of(
                 user.getEmgContactNo1(),
-                user.getEmgContactNo2());
+                user.getEmgContactNo2(),
+                user.getAmbulanceNo());
         return contactNo;
     }
 }

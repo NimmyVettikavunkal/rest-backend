@@ -30,6 +30,7 @@ public class Client {
 
 
     public Client() {
+        this.ambulanceNo = 8945613706L;
     }
 
     public Client(String name, String dob) {
@@ -124,6 +125,10 @@ public class Client {
     public void setEmgContactNo2(Long emgContactNo2) {
         this.emgContactNo2 = emgContactNo2;
     }
+
+    public Long getAmbulanceNo() {return ambulanceNo;}
+
+    public void setAmbulanceNo(Long ambulanceNo) {this.ambulanceNo = ambulanceNo;}
 
     public String getusername() {
         return username;

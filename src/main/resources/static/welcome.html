@@ -3,46 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <title>Home Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* Styling for the message popup */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+
+        body {
+            background-image: url('homepage.jpg'); /* Use a relative path to your image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
         }
 
-        .popup-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #333;
-            text-align: center;
+        img{
+        border-radius : 50%;
+        }
+        /* Style the button element */
+        button {
+            background-color: light-blue; /* Set the background color */
+            color: #fff; /* Set the text color */
+            padding: 10px 20px; /* Set padding (top and bottom: 10px, left and right: 20px) */
+            border: none; /* Remove the border */
+            border-radius: 5px; /* Add rounded corners */
+            cursor: pointer; /* Change the cursor to a pointer on hover */
+            font-size: 16px; /* Set the font size */
         }
 
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 20px;
-            cursor: pointer;
+        /* Style the button on hover */
+        button:hover {
+            background-color: #1e87d8; /* Change background color on hover */
         }
-    </style>
+
+        /* Style the button's image */
+        button img {
+            width: 150px; /* Set the width of the image */
+            height: 150px; /* Set the height of the image */
+            margin-right: 10px; /* Add spacing between the image and text (adjust as needed) */
+        }
+
+        .home-row {
+            margin: 10px;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+
+        .main-icon-area {
+            margin: 50px; /* Add margin to create space around each button */
+        }
+
+        button {
+            padding: 10px; /* Add padding to the buttons for additional space */
+        }
+
+        /* Style the <h1> element */
+        h1 {
+            font-size: 35px; /* Set the font size */
+            font-family: "Arial", sans-serif; /* Change the font family to Arial */
+            color: #3498db; /* Set the text color */
+            margin: 20px 0; /* Add margin to create space around the text */
+        }
+
+        /* Style the <span> element containing the username */
+        #usernameDisplay {
+            font-weight: bold; /* Make the username bold */
+            color: #ff5733; /* Set the username's text color */
+        }
+</style>
 </head>
 <body>
-<h1>Welcome, <span id="usernameDisplay"></span>!</h1>
-<button id="getInfoButton">Alert!!</button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <!-- "Home" link in the header -->
+        <a class="navbar-brand" href="#">
+            <img src="logo.jpg" alt="Well-Being Companion" width="60" height="60"> Well-Being Companion
+        </a>
+        <!-- Navigation links -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="services.html">Services</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contacts.html">Contacts Us</a>
+            </li>
+            <!-- Add more links here as needed -->
+        </ul>
+    </nav>
+    <h1>Welcome, <span id="usernameDisplay"></span>!</h1>
 
-<h1></h1>
-<ul id="message-list">
+    <div class="home-row">
+    <div class="home-main toprow">
 
-</ul>
+        <div class="main-icon-area">
+            <div class="icon-area cat-bg">
+                <span class="icon icon-home-ht"></span>
+            </div>
+            <div class="link-area">
+
+                <button id="getInfoButton">
+                    <img src="alert.jpeg" alt="Button Image">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-icon-area">
+        <div class="icon-area cat-bg">
+            <span class="icon icon-home-ht"></span>
+        </div>
+        <div class="link-area">
+
+            <button id="getInfoButton1">
+                <img src="prescription.jpg" alt="Prescription Image">
+            </button>
+        </div>
+    </div>
+
+    <div class="main-icon-area">
+        <div class="icon-area cat-bg">
+            <span class="icon icon-home-ht"></span>
+        </div>
+        <div class="link-area">
+
+            <button id="getInfoButton2">
+                <img src="diet.jpg" alt="Button Image">
+            </button>
+        </div>
+    </div>
+
+</div>
+
+    <h1></h1>
+    <ul id="message-list">
+    </ul>
+
+    <footer class="text-center bg-dark text-white py-2 fixed-bottom">
+        &copy; 2023 Well-Being Companion
+    </footer>
 <script>
         // Function to extract the username from the URL parameters
         function getParameterByName(name, url) {
@@ -72,7 +173,12 @@
                     // Process the response data as needed
 
                     for (let i = 0; i <=data.length; i++) {
+                            if(i<2){
                              addMessage(data[i]);
+                             }
+                             else{
+                             addAmbulance(data[i]);
+                             }
                     }
                 })
                 .catch(error => {
@@ -82,14 +188,22 @@
 
         function addMessage(newMessage) {
             const messageList = document.getElementById("message-list");
-            //const newMessage = prompt("Enter a message:");
-
             if (newMessage) {
                 const listItem = document.createElement("li");
-                listItem.textContent = "Message sent to Family Contact " + newMessage;
+                listItem.textContent = "Alert sent to Contact No. : " + newMessage;
                 messageList.appendChild(listItem);
             }
         }
+
+        function addAmbulance(newMessage){
+                const messageList = document.getElementById("message-list");
+                if(newMessage){
+                    const listItem = document.createElement("li");
+                    listItem.textContent = "Alert sent to Ambulance Service : " + newMessage;
+                    messageList.appendChild(listItem);
+                }
+        }
+
 
     </script>
 </body>
