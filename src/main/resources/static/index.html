@@ -3,28 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS can be added here */
+        body {
+            background-image: url('healthcarebackground.jpg'); /* Use a relative path to your image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        img{
+        border-radius : 50%;
+        }
+    </style>
 </head>
 <body>
-<h1>Login</h1>
-<form id="loginForm" onsubmit="return validateForm();">
-    <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-    </div>
-    <div>
-        <button type="submit">Log In</button>
-    </div>
-</form>
+<!-- Header -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <!-- "Home" link in the header -->
+    <a class="navbar-brand" href="#">
+        <img src="logo.jpg" alt="Well-Being Companion" width="60" height="60"> Well-Being Companion
+    </a>
+    <!-- Navigation links -->
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="contacts.html">Contacts Us</a>
+        </li>
+        <!-- Add more links here as needed -->
+    </ul>
+</nav>
 
-<p id="errorText" style="color: red; display: none;">Authentication failed. Please check your username and password.</p>
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="text-center">Login</h1>
+                </div>
+                <div class="card-body">
+                    <form id="loginForm" onsubmit="return validateForm();">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for "password">Password:</label>
+                            <input type="password" class="form-control" id="password" name "password" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                        </div>
+                    </form>
+                    <p id="errorText" class="text-danger text-center" style="display: none;">Authentication failed. Please check your username and password.</p>
+                    <!-- Register link below the form -->
+                    <p class="text-center">Don't have an account? <a href="registrationform.html">Register here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<!-- Add a registration link here -->
-<p>Don't have an account? <a href="registrationform.html">Register here</a></p>
-
+<!-- Footer -->
+<footer class="text-center bg-dark text-white py-2 fixed-bottom">
+    &copy; 2023 Well-Being Companion
+</footer>
 <script>
         function validateForm() {
             var username = document.getElementById("username").value;
