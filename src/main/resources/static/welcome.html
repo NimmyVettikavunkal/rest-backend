@@ -35,6 +35,15 @@
             font-size: 20px;
             cursor: pointer;
         }
+        #alert {
+            position: absolute;
+            /* display: none !important; */
+            z-index: 999;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
         .alert {
         background-color: #ff0000; /* Red background color for the alert message */
         color: #fff; /* White text color for the alert message */
@@ -54,6 +63,18 @@
   margin: 4px 2px;
   cursor: pointer;
 }
+ .close-btn {
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #ee0f0f;
+        }
+.close-btn:hover {
+            color: #333;
+        }
     body {
         background-image: url('healthcare1.jpg');
         background-size: cover; /* Scale the image to cover the entire background */
@@ -110,17 +131,36 @@
     <li><a href="#">Contact</a></li>
 </ul>
 <h1>Welcome, <span id="usernameDisplay"></span>!</h1>
-<button id="getInfoButton" class="button">Alert!!</button>
+<button id="getInfoButton" class="button" onclick="sendAlert()">Alert!!</button>
 
-<div class="alert">
-<h1>Message Sent to </h1>
-<ul id="message-list">
+<div id="alert" class="alert">
+    <div style="
+        height: 73px;
+        background-color: red;
+    "></div>
+    <h1 style="color: black !important;display: block;text-align: center;">Alert!</h1>
+<ul id="message-list" style="text-align: center">
 </ul>
+    <div style="text-align: center;">
+        <button onclick="closealert()" class="close-btn">Close</button>
+    </div>
 </div>
 <footer>
     <p>&copy; 2023 Well-being Companion</p>
 
 </footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script>
+
+        function sendAlert() {
+            $("#alert").css("display", "block");
+        }
+        function closealert() {
+            $("#alert").css("display", "none");
+        }
+
+
+    </script>
 <script>
         // Function to extract the username from the URL parameters
         function getParameterByName(name, url) {
